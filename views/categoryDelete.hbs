@@ -1,0 +1,21 @@
+<div>
+  {{#if category_drugs}}
+    <div>DELETE FOLLOWING DRUGS BEFORE DELETING CATEGORY:</div>
+    <ul>
+      {{#each category_drugs}}
+        <li>{{this.name}}</li>
+      {{/each}}
+    </ul>
+  {{else}}
+    <h1>DELETE CATEGORY PAGE</h1>
+    <form action="" method="post">
+      <label for="categoryDropdown">Choose a category to delete:</label>
+      <select name="categoryDropdown" id="categoryDropdown">
+        {{#each categoryDropdown}}
+          <option value="{{this._id}}">{{this.name}}</option>
+        {{/each}}
+      </select>
+      <button type="submit">Delete!</button>
+    </form>
+  {{/if}}
+</div>

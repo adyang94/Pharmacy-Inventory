@@ -1,0 +1,25 @@
+<div class="drugListPage">
+  <h1>DRUG LIST</h1>
+  <p>{{user.username}}</p>
+  {{#each data}}
+    <li>
+      <h3>{{name}}</h3>
+      <p><strong>Category:</strong> {{category.name}}</p>
+      <p>{{description}}</p>
+      <p>${{price}}</p>
+      <p>In Stock:
+        {{#if in_stock.in_stock}}
+          <span style="color: green;">{{in_stock.in_stock}}</span>
+        {{else}}
+          <span>{{in_stock.in_stock}}</span>
+        {{/if}}
+      </p>
+      <p>Pre-Ordered: {{preorder.preorder}}</p>
+
+    </li>
+  {{/each}}
+  <hr>
+  {{#if user}}
+  <strong><a href="/catalog/drug/delete">Delete a drug!</a></strong>
+  {{/if}}
+</div>

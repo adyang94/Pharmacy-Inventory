@@ -1,0 +1,25 @@
+<header class="header">
+  <div class="headerUpper">
+    <div class="title">Pharmacy Management App</div>
+  </div>
+
+  <div class="navBar">
+    <a href="/catalog" class="navItem">Homepage</a>
+    <a href="/catalog/drug" class="navItem">All Drugs</a>
+    <a href="/catalog/category" class="navItem">All Categories</a>
+    <a href="/catalog/drug/create" class="navItem">Add Drug</a>
+    <a href="/catalog/category/create" class="navItem">Add Categories</a>
+    <a href="/catalog/signup" class="navItem"> Sign Up </a>
+    {{#if currentUser.username}}
+    <a href="/catalog/logout" class="navItem">Log Out</a>
+    {{else}}
+    <a href="/catalog/login" class="navItem">Log In</a>
+    {{/if}}
+  </div>
+
+
+</header>
+
+
+
+</div>

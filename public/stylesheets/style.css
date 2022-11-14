@@ -1,0 +1,65 @@
+html, body {
+  padding: 0;
+  margin: 0;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  height: 100%;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header {
+  background-color: rgb(83, 224, 255);
+  height: 75px;
+  max-height: 4rem;
+  width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(83, 224, 255);
+  
+  height: 75px;
+  max-height: 4rem;
+  bottom: 0;
+  width: 100%;
+  font-size: 1.5rem;
+  
+}
+footer a {
+  padding: 1vw;
+}
+
+.headerUpper {
+  font-size: 1.5rem;
+  display: flex;
+  width: 95%;
+  justify-content: center;
+  padding: 5px;
+}
+.navBar {
+  display: flex;
+  align-items: center;
+}
+.navItem {
+  padding-left: 3px;
+  padding-right: 3px;
+  color: black;
+}
+.homePage {
+  display: flex;
+  height: 100%;
+  
+}
+.homePageInfo {
+  margin: 5%;
+}

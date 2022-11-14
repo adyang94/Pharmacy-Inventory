@@ -1,0 +1,11 @@
+<div>
+  <h1>CATEGORY LIST</h1>
+  <ul>
+    {{#each data}}
+      <li>{{name}}</li>
+    {{/each}}
+  </ul>
+  {{#if user}}
+    <a href="/catalog/category/delete">Delete a category</a>
+  {{/if}}
+</div>

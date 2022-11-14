@@ -1,0 +1,26 @@
+.drugListPage li{
+  list-style-type: none;
+}
+
+.drugCreatePage {
+  display: flex;
+  flex-direction: column;
+}
+
+.drugCreateForm {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.drugCreateForm .section1 {
+  padding: 10px;
+}
+.drugCreateForm .section2 {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.drugCreateForm .section2 label {
+  padding: 2px;
+}

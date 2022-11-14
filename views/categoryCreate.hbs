@@ -1,0 +1,21 @@
+<div>
+  {{#if user}}
+  <form action="" method="post">
+      <h1>ADD A NEW CATEGORY:</h1>
+      
+      <input id="categoryInputName" type="text" placeholder="Type new category here:" name="categoryInputName">
+
+      <button type="submit" >Submit</button>
+    </form> 
+  {{else}}
+    <h3>You must login to add a category.</h3>
+  {{/if}}
+
+  {{#if errors}}
+    <ul>
+      {{#each errors}}
+        <li>{{this}}</li>
+      {{/each}}
+    </ul>
+  {{/if}}
+</div>

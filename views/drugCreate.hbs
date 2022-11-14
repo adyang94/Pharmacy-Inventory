@@ -1,0 +1,54 @@
+<div class="drugCreatePage">
+
+  {{#if user}}
+  <form class="drugCreateForm" action="" method="post">
+    <h1 class="drugCreateHeader">ADD A NEW DRUG:</h1>
+
+    <div class="section1">
+      <input id="drugInputName" type="text" placeholder="Type drug name here:" name="drugInputName">
+
+      <input id="drugDescriptionInputName" type="text" placeholder="Type drug description here:"
+        name="drugDescriptionInputName">
+
+      <input id="drugPrice" type="text" placeholder="Type drug price here:" name="drugPrice">
+
+      <input id="drugMinQty" type="number" placeholder="Type drug min qty here:" name="drugMinQty">
+    </div>
+    <div class="section2">
+      <label for="drugCategory">Select a category: </label>
+      <select name="drugCategory" id="drugCategory">
+        {{#each Categories}}
+        <option value="{{this._id}}">{{this.name}}</option>
+        {{/each}}
+      </select>
+
+      <label for="drugInstock">Select availability: </label>
+      <select name="drugInstock" id="drugInstock">
+        {{#each Instock}}
+        <option value={{this._id}}>{{this.in_stock}}</option>
+        {{/each}}
+      </select>
+
+      <label for="drugPreorder">Select preorder status: </label>
+      <select name="drugPreorder" id="drugPreorder">
+        {{#each Preorder}}
+        <option value={{this._id}}>{{this.preorder}}</option>
+        {{/each}}
+      </select>
+    </div>
+
+    <button type="submit">Submit</button>
+  </form>
+  {{else}}
+  <h3>You must be logged in to add a drug.</h3>
+  {{/if}}
+
+
+  {{#if errors}}
+  <ul>
+    {{#each errors}}
+    <li>{{this}}</li>
+    {{/each}}
+  </ul>
+  {{/if}}
+</div>

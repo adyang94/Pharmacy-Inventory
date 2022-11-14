@@ -1,0 +1,12 @@
+<div>
+  <h1>DELETE DRUG PAGE</h1>
+  <form action="" method="post">
+    <label for="drugDropdown">Choose a drug to delete:</label>
+    <select name="drugDropdown" id="drugDropdown">
+      {{#each drugDropdown}}
+      <option value="{{this._id}}">{{this.name}}</option>
+      {{/each}}
+    </select>
+    <button type="submit">Delete!</button>
+  </form>
+</div>

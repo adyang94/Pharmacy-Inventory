@@ -1,0 +1,25 @@
+<div class="homePage">
+  <img src="images/homepageimage.jpg" alt="Homepage Side Image" width="60%" height="100%">
+  
+  <div class="homePageInfo">
+
+    <h1>Homepage</h1>
+    {{#if user}}
+      <p>Welcome to the Pharmacy Management App, {{currentUser.username}}!</p>
+    {{else}}
+      <p>Welcome to the Pharmacy Management App</p>
+    {{/if}}
+    <p>Created by Andrew Yang</p>
+
+    <div class="infoDisplayCtn">
+      <div class="numDrugsCtn">Number of Drugs: {{data.drugCount}}</div>
+      <div class="numCategoriesCtn">Number of Categories: {{data.categoryCount}}</div>
+      <div class="outOfStockCtn">Out of Stock: {{data.outOfStockCount}}</div>
+      <div class="preorderCtn">Pre-ordered: {{data.preorderCount}}</div>
+    </div>
+
+    <br>
+    <br>
+  </div>
+  
+</div>
