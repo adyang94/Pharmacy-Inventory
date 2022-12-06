@@ -76,20 +76,6 @@ exports.loginPost = function (req, res, next) {
   })(req, res, next);
   
   console.log('LOGIN POST+');
-  
-  // (req, res, next) => {
-  //   // issue a remember me cookie if the option was checked
-  //   console.log('LOGIN POST1');
-  //   if (!req.body.remember_me) { return next(); }
-  //   console.log('LOGIN POST11');
-
-  //   var token = utils.generateToken(64);
-  //   Token.save(token, { userId: req.user.id }, function(err) {
-  //     if (err) { return done(err); }
-  //     res.cookie('remember_me', token, { path: '/', httpOnly: true, maxAge: 604800000 }); // 7 days
-  //     return;
-  //   });
-  // }
 
   console.log('LOGIN POST1');
   // res.redirect('/catalog');

@@ -14,11 +14,9 @@ var helmet = require('helmet');
 
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-const RememberMeStrategy = require('passport-remember-me').Strategy;
 const session = require("express-session");
 const UserSchema = require('./models/User');
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 
 var app = express();
 
@@ -67,12 +65,6 @@ passport.use(
           console.log('USER: ', user);
           console.log('bcrypt logged in\n');
 
-          // issueToken(req.user, function(err, token) {
-          //   if (err) { return next(err); }
-          //   res.cookie('remember_me', token, { path: '/', httpOnly: true, maxAge: 1000 });
-          //   return next();
-          // });
-
           return done(null, user)
 
         } else if (!res) {
@@ -87,27 +79,6 @@ passport.use(
     });
   })
 );
-
-function issueToken(user, done) {
-  var token = utils.generateToken(64);
-  Token.save(token, { userId: user.id }, function(err) {
-    if (err) { return done(err); }
-    return done(null, token);
-  });
-}
-
-// passport.use(new RememberMeStrategy(
-//   function(token, done) {
-
-//     //Is Token supposed to be capitalized???
-//     Token.consume(token, function (err, user) {
-//       if (err) { return done(err); }
-//       if (!user) { return done(null, false); }
-//       return done(null, user);
-//     });
-//   },
-//   issueToken
-// ));
 
 passport.serializeUser(function(user, done) {
   console.log('SERIALIZE');
@@ -165,29 +136,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-// Verify Token
-function verifyToken(req, res, next) {
-  // Get auth header value
-  const bearerHeader = req.headers['authorization'];
-
-  // Check if bearer is udnefined
-  if(typeof bearerHeader !== 'undefined') {
-    // Split at the space
-    const bearer = bearerHeader.split(' ');
-    // Get token from array
-    const bearerToken = bearer[1];
-    // Set the token
-    req.token = bearerToken;
-    console.log('REQ.TOKEN: ', req.token);
-    // Next middleware
-    next();
-
-  } else {
-    // Forbidden
-    res.sendStatus(403);
-  }
-};
 
 console.log('\n 5.');
 
