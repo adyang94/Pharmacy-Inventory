@@ -94,7 +94,7 @@ passport.deserializeUser(function(id, done) {
 
 app.use(session({ secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
-app.use(passport.session({ secret: 'secret', cookie: { maxAge: 1 }}));
+app.use(passport.session({ secret: process.env.SESSION_SECRET, cookie: { maxAge: 1 }}));
 // app.use(passport.authenticate('remember-me'));
 
 
