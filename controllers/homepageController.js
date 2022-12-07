@@ -12,7 +12,6 @@ const bcrypt = require('bcryptjs');
 
 // GET HOMEPAGE
 exports.homepage = function (req, res) {
-  console.log('Going to Homepage');
   async.parallel({
     drugCount: function(callback) {
       DrugSchema.countDocuments({}, callback);
@@ -27,8 +26,6 @@ exports.homepage = function (req, res) {
       PreorderSchema.countDocuments({preorder: true}, callback);
     }
   }, function (err, results) {
-    console.log('\nRESULTS: ', results, '\nERROR: ', err);
-    console.log('\nUSER: ', req.user);
     res.render('index', {error: err, data: results, user: req.user});
   });
 };
@@ -43,7 +40,6 @@ exports.signupPost = function (req, res) {
   bcrypt.hash(req.body.password, 10, (err, hashedPassword) => {
     // if err, do something
     if (err) {
-      console.log('HASH ERROR');
       return;
 
     } else {
@@ -68,16 +64,12 @@ exports.loginGet = function (req, res) {
 /* POST LOG IN FORM */
 exports.loginPost = function (req, res, next) {
   
-  console.log('LOGIN POST\n', req.body);
 
   passport.authenticate("local", {
     successRedirect: "/catalog",
     failureRedirect: "/catalog/signup"
   })(req, res, next);
   
-  console.log('LOGIN POST+');
-
-  console.log('LOGIN POST1');
   // res.redirect('/catalog');
   return;
 }

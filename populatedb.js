@@ -1,7 +1,5 @@
 #! /usr/bin/env node
 
-console.log('This script populates some test drugs, categories, instocks, and preorders to your database. Specified database as argument - e.g.: populatedb mongodb+srv://cooluser:coolpassword@cluster0.a9azn.mongodb.net/local_library?retryWrites=true');
-
 // Get arguments passed on command line
 var userArgs = process.argv.slice(2);
 /*
@@ -50,7 +48,6 @@ function createCategory ( name, callback ) {
       callback(err, null);
       return;
     }
-    console.log('New category: ' + category);
     categories.push(category);
     callback(null, category);
   });
@@ -68,7 +65,6 @@ function createDrug ( name, description, price, min_qty, category, preorder, in_
   if (preorder != false) drugDetail.preorder = preorder;
   if (in_stock != false) drugDetail.in_stock = in_stock;
   
-  console.log('2==================', category);
   var drug = new DrugSchema(drugDetail);
 
   drug.save( function (err) {
@@ -119,7 +115,6 @@ function createPreorder ( preorder, callback ) {
 function createDrugModels (callback) {
   async.parallel([
     function (callback) {
-      console.log('1=====================', categories);
       createDrug(
         'Levothyroxine: 50mg | 30 pack',
         'It can treat hypothyroidism. It can also treat an enlarged thyroid gland and thyroid cancer.',
@@ -189,9 +184,7 @@ async.series([
   if (err) {
     console.log('Final Err: ' + err);
   }
-  console.log('THE END============================')
 
   // All done, disconnect from database
   mongoose.connection.close();
-  console.log('THE END============================')
 });

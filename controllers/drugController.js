@@ -14,9 +14,6 @@ exports.drugList = function (req, res, next) {
   .populate('preorder')
   .exec( function (err, drugList) {
     if (err) {return next(err);}
-    console.log('Drug List: ', drugList);
-    console.log('\nUSER NAME: ', res.locals.currentUser);
-    console.log('\nREQ.USER+++++++++++++:', req.user);
     res.render('drugList.hbs', {data: drugList, user: req.user, err: err});
   })
 };
@@ -34,7 +31,6 @@ exports.drugCreateGet = function (req, res, next) {
       PreorderSchema.find().exec(callback)
     }
   }, function (err, results) {
-    console.log('\nRESULTS: ', results);
     res.render('drugCreate', {Categories: results.Categories, Instock: results.Instock, Preorder: results.Preorder, user: req.user});
   })
 };
@@ -52,9 +48,7 @@ exports.drugCreatePost = [
   
   // Process request
   (req, res, next) => {
-    console.log('3');
     const errors = validationResult(req);
-    console.log('1');
     // Create new category
     var drug = new DrugSchema({
       name: req.body.drugInputName,
@@ -65,28 +59,20 @@ exports.drugCreatePost = [
       in_stock: req.body.drugInstock,
       min_qty: req.body.drugMinQty,
     });
-    console.log('2');
     if (!errors.isEmpty()) {
-      console.log('4');
       res.render('drugCreate', { drug: drug, errors: errors.array() });
       return;
 
     } else {
-      console.log('5');
       DrugSchema.findOne({ 'name': req.body.name })
       .exec( function (err, found_drug) {
         if (err) { return next(err); }
-        console.log('7');
-        console.log(err);
-        if (found_drug) { res.redirect(found_drug.url); }
-
-        else {
-          console.log('8');
+        if (found_drug) { 
+          res.redirect(found_drug.url); 
+        }else {
           drug.save( function (err) {
             console.log(err);
             if (err) { return next(err); }
-            console.log('6');
-            console.log('\nSAVE SUCCESS', drug);
 
             res.redirect('/catalog/drug');
           })
@@ -104,7 +90,6 @@ exports.drugDeleteGet = function (req, res) {
   .sort()
   .exec( function (err, drugs_list) {
     if (err) {return next (err);}
-    console.log('drugs list: ', drugs_list);
     
     res.render('drugDelete', {drugDropdown: drugs_list});
   })

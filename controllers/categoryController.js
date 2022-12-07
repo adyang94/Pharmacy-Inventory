@@ -11,7 +11,6 @@ exports.categoryList = function (req, res) {
   CategorySchema.find({}, 'name')
   .exec( function (err, categoryList) {
     if (err) {return next(err);}
-    console.log('CATEGORY LIST: ', categoryList);
     res.render('categoryList', {data: categoryList, err: err, user: req.user});
   });
 };
@@ -50,7 +49,6 @@ exports.categoryCreatePost = [
         else {
           category.save( function (err) {
             if (err) { return next(err); }
-            console.log('\nSAVE SUCCESS', category.url);
 
             res.redirect('/catalog/category');
           })
@@ -66,18 +64,16 @@ exports.categoryDeleteGet = function (req, res) {
   .sort([['name', 'ascending']])
   .exec( function (err, categories_list) {
     if (err) {return next (err);}
-    console.log('categories_list: ',categories_list);
+
     res.render('categoryDelete', { categoryDropdown: categories_list });    
   })
 };
 
 // /categories/delete **post req**
 exports.categoryDeletePost = function (req, res, next) {
-  console.log('POST CATEGORY DELETE: ', req.body.categoryDropdown.value);
 
   async.parallel({
     category: function (callback) {
-      console.log('CATEGORY');
       CategorySchema.find({ '_id': req.body.categoryDropdown}, '_id')
       .exec(callback);
     },
@@ -86,7 +82,6 @@ exports.categoryDeletePost = function (req, res, next) {
       .exec(callback);
     },
   }, function (err, results) {
-    console.log('\nRESULTS: ', results);
     if (err) {return next(err);}
     if (results.category_drugs.length > 0) {
       res.render('categoryDelete', {category_drugs: results.category_drugs});
